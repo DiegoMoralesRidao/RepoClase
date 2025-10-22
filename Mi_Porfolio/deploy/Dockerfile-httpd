@@ -1,0 +1,17 @@
+#partimos de una imagen ubuntu 
+FROM ubuntu
+RUN apt update && insall -yq --no-install-recommends\
+    apache2 \
+    libapache2-mod-php7.2 \
+    nano \
+    curl \
+    net-tools iputils-ping \
+RUN apt install nano -y
+#debemos consultar el docker hub (imagen) para ver variables de entorno 
+#directorios de trabajo etc etc 
+#directorio de trabajo dentro del contenedor
+WORKDIR /var/www/html
+#el directorio . es relativo al contexto del Docker Compose
+COPY ./src .
+EXPOSE 80
+CMD apache2ctl,-DFOREGROUND

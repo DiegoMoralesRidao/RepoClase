@@ -1,0 +1,12 @@
+FROM ubuntu 
+ARG USARIO
+ARG PASSWORD
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+    sudo \
+    nano \
+    git curl wget \
+    iputils-ping net-tools
+
+RUN useradd -rm -d /home/${USARIO} -s /bin/bash  ${USARIO}
+RUN echo  "${USARIO}:${PASSWORD}" | chpasswd
+RUN echo "Bienvenido a la empresa, ${USARIO}" > /home/${USARIO}/welcome.txt"

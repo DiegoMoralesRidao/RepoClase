@@ -5,6 +5,8 @@ services:
     build:
       context: .. #portfolio 
       dockerfile: ./deploy/Dockerfile
+      args:
+        - USUARIO=diego
     container_name: ctportfolio
     ports:
       - "8810:80"  
